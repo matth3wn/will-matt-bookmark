@@ -1,14 +1,14 @@
 'use strict';
-/* global  store, api,$,bookMark */
+/* global  store, api,$,bookmark */
 
 $(document).ready(function() {
-  bookMark.bindEventListeners();
+  bookmark.eventListener();
 
   // On initial load, fetch Shopping Items and render
-  api.getItems()
-    .then((items) => {
-      items.forEach((item) => store.addItem(item));
-      bookMark.render();
-    })
-    .catch(err => console.log(err.message));
+//   api.getItems()
+//     .then((items) => {
+//       items.forEach((item) => store.addItem(item));
+//       bookMark.render();
+//     })
+//     .catch(err => console.log(err.message));
 });

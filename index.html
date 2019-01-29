@@ -13,19 +13,19 @@
   <main banner='main'>
     <title banner='header'>Bookmark App</title>
     <section class='add-form' banner='region'>
-      <form banner='form' id='add-bookmark-form'>
         <div class='button-section'>
-          <button class='add-bookmark'>Add Bookmark</button>
-          <select class='dropdown-filter'>
-              <option value="" disabled selected>Select your rating</option>
-              <option value="5">5</option>
-              <option value="4">4</option>
-              <option value="3">3</option>
-              <option value="2">2</option>
-              <option value="1">1</option>
-            </select>
-          </div>
+            <button id='add-bookmark'>Add Bookmark</button>
+            <select class='dropdown-filter'>
+                <option value="" disabled selected>Select your rating</option>
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+              </select>
+            </div>
 
+      <form banner='form' id='add-bookmark-form'>
           <div class="input-section">
             <h4 class="error-message">You need to fill something from server</h4>
             <label for="title">Title</label><br>
@@ -36,6 +36,7 @@
             <input type="text" id="description" placeholder="description" required><br>
             <label for="rating">Rating</label><br>
             <input type="number" id="rating" placeholder="1-5" required min="1" max="5">
+            <button class="submit-button" type="submit">Submit</button>
             </div>
       </form>
     </section>
@@ -63,14 +64,12 @@
   </main>
 
 
-
-
-
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="scripts/api.js"></script>
   <script type="text/javascript" src="scripts/store.js"></script>
-  <script src="index.js"></script>
+  <script type="text/javascript" src="scripts/bookmark.js"></script>
+  <script src="scripts/index.js"></script>
 </body>
 
 </html>
