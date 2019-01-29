@@ -19,7 +19,7 @@ const bookmark = (function() {
     }
 
     return `
-    <li data-item-id="${obj.id}>
+    <li class="js-item-elem" data-id="${obj.id}">
     <div>${obj.title}</div>
     <div class="li hidden">Descrip ${obj.desc}</div>
      <div class="li hidden"><a href="${obj.url}">Visit ${obj.title}!</a></div> 
@@ -34,14 +34,11 @@ const bookmark = (function() {
     return input.join('');
   }
 
-  // not working at the moment
   function getItemIdFromElement(item) {
+    console.log(item);
     return $(item)
-      .closest('li')
-      .find('.li')
-      .data('item-id');
+      .data('id');
   }
-
 
 
   // handles expanding the bookmarks
@@ -49,7 +46,7 @@ const bookmark = (function() {
     $('.bookmark-list').on('click', 'li',function(event){
       console.log(this);
       store.expanded = true;
-      const id = getItemIdFromElement(this);
+      const id = getItemIdFromElement(event.currentTarget);
       console.log(id);
     //   $(event.target).closest('li').find('.li').toggleClass('hidden');
     });
