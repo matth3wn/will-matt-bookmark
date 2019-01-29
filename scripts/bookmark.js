@@ -3,16 +3,16 @@
 /* global store, api, $ */
 
 
-const bookmark = (function() {
+const bookmark = (function () {
 
   // generating html for bookmarks in store
-  function generateBookmark(obj){
-    
-    if(store.adding === true){
+  function generateBookmark(obj) {
+
+    if (store.adding === true) {
       $('#add-bookmark-form').removeClass('hidden');
       $('#add-bookmark').addClass('hidden');
     }
-    if(store.adding === false){
+    if (store.adding === false) {
       $('#add-bookmark-form').addClass('hidden');
       $('#add-bookmark').removeClass('hidden');
       $('#add-bookmark-form').find('input').val('');
@@ -21,15 +21,14 @@ const bookmark = (function() {
     return `
     <li class="js-item-elem" data-id="${obj.id}">
     <div>${obj.title}</div>
-    <div class="li hidden">Descrip ${obj.desc}</div>
-     <div class="li hidden"><a href="${obj.url}">Visit ${obj.title}!</a></div> 
+    ${expandedHelper(obj)}
     <div>Rating ${obj.rating}</div>
     <button class='delete-button'>Delete</button>
     </li>
     `;
   }
 
-  function generateBookMarkList(bookmarks){
+  function generateBookMarkList(bookmarks) {
     const input = bookmarks.map(i => generateBookmark(i));
     return input.join('');
   }
@@ -41,31 +40,44 @@ const bookmark = (function() {
   }
 
 
+  function expandedHelper(bookmark) {
+    if (bookmark.expanded) {
+      return `<div class="">Descrip ${bookmark.desc}</div>
+      <div class=""><a href="${bookmark.url}">Visit ${bookmark.title}!</a></div> `;
+    } else
+      return '';
+  }
   // handles expanding the bookmarks
-  function handleExpand(){
-    $('.bookmark-list').on('click', 'li',function(event){
-      console.log(this);
+  function handleExpand() {
+    $('.bookmark-list').on('click', 'li', function (event) {
+      // console.log(this);
       store.expanded = true;
       const id = getItemIdFromElement(event.currentTarget);
       console.log(id);
-    //   $(event.target).closest('li').find('.li').toggleClass('hidden');
+
+      store.lists.map(bookmark => {
+        if (bookmark.id === id) {
+          bookmark.expanded = !bookmark.expanded;
+        } 
+      render();
+      });
     });
   }
 
 
   // handling adding bookmark
   function handleAddBookmark() {
-    $('#add-bookmark-form').submit(function(event) {
+    $('#add-bookmark-form').submit(function (event) {
       event.preventDefault();
       const newBookmark = $(event.target).serializeJson();
       console.log('handle add bookmark ran..');
       api.createBookmark(newBookmark)
-        .then(newBookmark1 =>{
+        .then(newBookmark1 => {
           store.addBookmark(newBookmark1);
           store.adding = false;
           render();
         })
-        .catch(err =>{
+        .catch(err => {
           store.error = true;
           store.setError(err.message);
           render();
@@ -75,17 +87,17 @@ const bookmark = (function() {
   }
 
   $.fn.extend({
-    serializeJson: function() {
+    serializeJson: function () {
       const formData = new FormData(this[0]);
       const o = {};
       formData.forEach((val, name) => o[name] = val);
       return JSON.stringify(o);
     }
   });
-  
+
   //sets store.adding = true
   function addButton() {
-    $('#add-bookmark').on('click', function(event) {
+    $('#add-bookmark').on('click', function (event) {
       console.log('add button ran');
       store.adding = true;
       render();
@@ -97,7 +109,7 @@ const bookmark = (function() {
 
     const bookmarkString = generateBookMarkList(bookmarks2);
 
-  
+
     $('.bookmark-list').html(bookmarkString);
   }
 
@@ -110,7 +122,8 @@ const bookmark = (function() {
 
 
   return {
-    eventListener, render
+    eventListener,
+    render
   };
 
 
