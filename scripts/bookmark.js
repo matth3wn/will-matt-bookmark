@@ -5,20 +5,26 @@
 
 const bookmark = (function() {
 
+
   // handling adding bookmark
   function handleAddBookmark() {
     $('#add-bookmark-form').submit(function(event) {
       event.preventDefault();
-      const newBookmark = $('#title').val();
-      console.log(newBookmark);
-      const newUrl = $('#url').val();
-      console.log(newUrl);
-      const newDescript = $('#description').val();
-      console.log(newDescript);
-      const newRating = $('#rating').val();
-      console.log(newRating);
+      $(event.target).serializeJson();
+      console.log($(event.target).serializeJson());
     });
   }
+
+  $.fn.extend({
+    serializeJson: function() {
+      const formData = new FormData(this[0]);
+      console.log(this[0]);
+      const o = {};
+      formData.forEach((val, name) => o[name] = val);
+      return JSON.stringify(o);
+    }
+  });
+  
 
   function addButton() {
     $('#add-bookmark').on('click', function(event) {
