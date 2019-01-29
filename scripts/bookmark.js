@@ -51,15 +51,14 @@ const bookmark = (function () {
   function handleExpand() {
     $('.bookmark-list').on('click', 'li', function (event) {
       // console.log(this);
-      store.expanded = true;
       const id = getItemIdFromElement(event.currentTarget);
       console.log(id);
 
       store.lists.map(bookmark => {
         if (bookmark.id === id) {
           bookmark.expanded = !bookmark.expanded;
-        } 
-      render();
+        }
+        render();
       });
     });
   }
