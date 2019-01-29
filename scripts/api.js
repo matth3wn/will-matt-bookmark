@@ -2,7 +2,7 @@
 
 // eslint-disable-next-line no-unused-vars
 const api = (function(){
-  const BASE_URL = 'https://thinkful-list-api.herokuapp.com/matt-will/items';
+  const BASE_URL = 'https://thinkful-list-api.herokuapp.com/matt-wills';
 
   /**
    * listApiFetch - Wrapper function for native `fetch` to standardize error handling
@@ -36,13 +36,12 @@ const api = (function(){
   };
 
   const createBookmark = function(name) {
-    const newItem = JSON.stringify({ name });
     return listApiFetch(BASE_URL + '/bookmarks', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: newItem
+      body: name
     });
   };
 

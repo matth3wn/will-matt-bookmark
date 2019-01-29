@@ -25,17 +25,17 @@
               </select>
             </div>
 
-      <form banner='form' id='add-bookmark-form'>
+      <form banner='form' id='add-bookmark-form' class="hidden">
           <div class="input-section">
-            <h4 class="error-message">You need to fill something from server</h4>
+            <h4 class="error-message">You need to fill something from server TEST MEssage</h4>
             <label for="title">Title</label><br>
             <input type="text" id="title" placeholder="title" name='title' required><br>
             <label for="url">URL</label><br>
             <input type="url" id="url" placeholder="url" name='url' required><br>
             <label for="description">Description</label><br>
-            <input type="text" id="description" placeholder="description" name='description' required><br>
+            <input type="text" id="description" placeholder="description" name='desc' ><br>
             <label for="rating">Rating</label><br>
-            <input type="number" id="rating" placeholder="1-5" name='rating' required min="1" max="5">
+            <input type="number" id="rating" placeholder="1-5" name='rating'  min="1" max="5">
             <button class="submit-button" type="submit">Submit</button>
             </div>
       </form>
@@ -43,21 +43,6 @@
 
     <section class='bookmark-section'>
       <ul class='bookmark-list'>
-        <li >
-            <div>Bookmark</div>
-            <div class="hidden descrip">Descrip</div>
-             <div class="hidden url">url</div> 
-            <div>Rating</div>
-            <button class='delete-button'>Delete</button>
-        </li>
-
-        <li>
-            <div>Bookmark</div>
-            <div>Descrip</div>
-             <div>url</div> 
-            <div>Rating</div>
-            <button class='delete-button'>Delete</button>
-        </li>
       </ul>
     </section>
 

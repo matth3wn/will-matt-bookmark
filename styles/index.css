@@ -1,5 +1,9 @@
+
+
+.li{
+  display: block;
+}
+
 .hidden{
   display: none;
 }
-
-

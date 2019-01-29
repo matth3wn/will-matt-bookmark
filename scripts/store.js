@@ -4,11 +4,11 @@
 const store = (function() {
 
   const addBookmark = function(item) {
-    this.items.push(item);
+    this.lists.push(item);
   };
 
   const findById = function(id) {
-    return this.items.find(item => item.id === id);
+    return this.lists.find(item => item.id === id);
   };
 
   const findAndUpdate = function(id, newData) {
@@ -17,20 +17,23 @@ const store = (function() {
   };
 
   const findAndDelete = function(id) {
-    this.items = this.items.filter(item => item.id !== id);
+    this.lists = this.lists.filter(item => item.id !== id);
   };
-
+  const setError = function(error) {
+    this.error = error;
+  };
 
   return {
     lists: [],
     addBookmark,
-    adding: false,
+    adding: null,
     expanded: false,
     error: false,
     minRating: false,
     findById, 
     findAndUpdate,
     findAndDelete,
+    setError,
   };
 
 }());
