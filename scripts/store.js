@@ -27,7 +27,7 @@ const store = (function() {
     lists: [],
     addBookmark,
     adding: null,
-    expanded: false,
+    expanded: null,
     error: false,
     minRating: false,
     findById, 
