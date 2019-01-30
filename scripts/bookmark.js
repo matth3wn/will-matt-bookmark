@@ -7,8 +7,8 @@ const bookmark = (function () {
 
   // generating html for bookmarks in store
   function generateBookmark(obj) {
-
-    return `
+    if (obj.rating)
+      return `
     <li class="js-item-elem" data-id="${obj.id}">
     <label data-id ="${obj.id}">${obj.title}</label>
     ${expandedHelper(obj)}
@@ -16,6 +16,14 @@ const bookmark = (function () {
     <button class='delete-button' data-id="${obj.id}">Delete</button>
     </li>
     `;
+    else
+      return `
+      <li class="js-item-elem" data-id="${obj.id}">
+    <label data-id ="${obj.id}">${obj.title}</label>
+    ${expandedHelper(obj)}<br>
+    <button class='delete-button' data-id="${obj.id}">Delete</button>
+    </li>
+      `;
   }
 
   function generateBookMarkList(bookmarks) {
@@ -58,7 +66,7 @@ const bookmark = (function () {
         <label for="description">Description</label><br>
         <input type="text" id="description" placeholder="description" name='desc' ><br>
         <label for="rating">Rating</label><br>
-        <input type="number" id="rating" placeholder="1-5" name='rating' value='1'  min="1" max="5">
+        <input type="number" id="rating" placeholder="1-5" name='rating'  min="1" max="5" >
         <button class="submit-button" type="submit">Submit</button>
         </div>
   </form>
@@ -123,6 +131,7 @@ const bookmark = (function () {
     $('.button-section').on('submit', 'form', function (event) {
       event.preventDefault();
       const newBookmark = $(event.target).serializeJson();
+      console.log(newBookmark);
 
       api.createBookmark(newBookmark)
         .then(newBookmark1 => {
@@ -142,7 +151,12 @@ const bookmark = (function () {
     serializeJson: function () {
       const formData = new FormData(this[0]);
       const o = {};
-      formData.forEach((val, name) => o[name] = val);
+      formData.forEach((val, name) => {
+        if (name === 'rating' && val === '') {
+          return;
+        }
+        o[name] = val;
+      });
       return JSON.stringify(o);
     }
   });
