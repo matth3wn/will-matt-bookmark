@@ -106,6 +106,7 @@ const bookmark = (function () {
         })
         .catch(err => {
           err.message;
+          store.error = true;
           store.setError(err.message);
           render();
         });
