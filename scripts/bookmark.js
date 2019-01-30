@@ -34,15 +34,14 @@ const bookmark = (function () {
       return `
       <form banner='form' id='add-bookmark-form' class="">
       <div class="input-section">
-        <h4 class="error-message">You need to fill something from server TEST MEssage</h4>
         <label for="title">Title</label><br>
-        <input type="text" id="title" placeholder="title" name='title' required><br>
+        <input type="text" id="title" placeholder="title" name='title' ><br>
         <label for="url">URL</label><br>
-        <input type="url" id="url" placeholder="url" name='url' required><br>
+        <input type="url" id="url" placeholder="url" name='url' ><br>
         <label for="description">Description</label><br>
         <input type="text" id="description" placeholder="description" name='desc' ><br>
         <label for="rating">Rating</label><br>
-        <input type="number" id="rating" placeholder="1-5" name='rating'  min="1" max="5">
+        <input type="number" id="rating" placeholder="1-5" name='rating' value='1'  min="1" max="5">
         <button class="submit-button" type="submit">Submit</button>
         </div>
   </form>
@@ -118,7 +117,8 @@ const bookmark = (function () {
     $('.button-section').on('submit', 'form', function (event) {
       event.preventDefault();
       const newBookmark = $(event.target).serializeJson();
-      console.log('handle add bookmark ran..');
+      console.log(newBookmark);
+      
       api.createBookmark(newBookmark)
         .then(newBookmark1 => {
           store.addBookmark(newBookmark1);
