@@ -12,7 +12,7 @@ const bookmark = (function () {
     <li class="js-item-elem" data-id="${obj.id}">
     <div aria-label="bookmark-title"data-id ="${obj.id}" class='bookmark-title'>${obj.title}</div>
     ${expandedHelper(obj)}
-    <div>Rating ${obj.rating}</div>
+    <div class='rating-style'>Rating ${obj.rating}</div>
     <button aria-label="delete" class='delete-button' data-id="${obj.id}">Delete</button>
     </li>
     `;
@@ -59,13 +59,13 @@ const bookmark = (function () {
       return `
       <form banner='form' id='add-bookmark-form' class="">
       <div class="input-section" aria-label="create-bookmark">
-        <label for="title">Title</label><br>
-        <input type="text" id="title" placeholder="  title" name='title' ><br>
-        <label for="url">URL</label><br>
+        <label for="title">Add your bookmark</label><br>
+        <input type="text" id="title" placeholder="  title" name='title'><br>
+        <label for="url" class='hidden'>label</label>
         <input type="url" id="url" placeholder="  url" name='url' ><br>
-        <label for="description">Description</label><br>
+        <label for="description" class='hidden'>description</label>
         <input type="text" id="description" placeholder="  description" name='desc' ><br>
-        <label for="rating">Rating</label><br>
+        <label for="rating" class='hidden'>rating</label>
         <input type="number" id="rating" placeholder=" 1-5" name='rating'  min="1" max="5" ><br>
         <button class="submit-button" type="submit">Submit</button>
         </div>
@@ -191,6 +191,21 @@ const bookmark = (function () {
     $('.bookmark-list').html(bookmarkString);
   }
 
+  // testing adding star unicode
+  function generateStars(stars){
+    switch(stars){
+    case 1: 
+      return '<span>★</span> &nbsp;&nbsp;<span>☆</span>&nbsp;&nbsp;<span>☆</span>&nbsp;&nbsp;<span>☆</span>&nbsp;&nbsp;<span>☆</span>';
+    case 2: 
+      return '<span>★</span> &nbsp;&nbsp;<span>★</span>&nbsp;&nbsp;<span>☆</span>&nbsp;&nbsp;<span>☆</span>&nbsp;&nbsp;<span>☆</span>';
+    case 3: 
+      return '<span>★</span> &nbsp;&nbsp;<span>★</span>&nbsp;&nbsp;<span>★</span>&nbsp;&nbsp;<span>☆</span>&nbsp;&nbsp;<span>☆</span>';
+    case 4: 
+      return '<span>★</span> &nbsp;&nbsp;<span>★</span>&nbsp;&nbsp;<span>★</span>&nbsp;&nbsp;<span>★</span>&nbsp;&nbsp;<span>☆</span>';
+    case 5: 
+      return '<span>★</span> &nbsp;&nbsp;<span>★</span>&nbsp;&nbsp;<span>★</span>&nbsp;&nbsp;<span>★</span>&nbsp;&nbsp;<span>★</span>'
+    }
+  }
 
   function eventListener() {
     handleAddBookmark();

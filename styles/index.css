@@ -17,6 +17,9 @@ ul {
 h1 {
   text-align: center;
   margin-top: 50px;
+  margin-bottom: 5px;
+  font-size: 42px;
+  text-shadow: 2px 2px #008B8B;
 }
 
 
@@ -24,27 +27,36 @@ h1 {
   text-align: center;
   background-color: antiquewhite;
   padding-bottom: 10px;
-  
+  box-shadow: 5px 10px #008B8B;
 }
 
 
 li {
   display: block;
-  text-align: center;
+  text-align: left;
   padding: 10px;
   width: 100%;
   background-color: antiquewhite;
   margin-bottom: 10px;
+  box-shadow: 5px 10px #008B8B;
+}
+
+li > * {
+  padding: 2.5px;
+  color: black;
 }
 
 .hidden {
   display: none;
 }
 
-
+.submit-button {
+  margin-top: 5px;
+}
 
 .dropdown-filter{
   border-radius: 25px;
+  margin-top: 10px;
 }
 
 
@@ -60,17 +72,21 @@ li {
 
 .input-section > * {
   margin: 3px 0;
+  margin-top: 10px;
 }
 
 input {
  border-style: solid;
- border-width: 1px;
+ border-width: 2px;
+ padding-left: 10px;
 }
 
 .bookmark-title{
   font-weight: bold;
   cursor: pointer;
+  margin-bottom: 10px;
 }
+
 label{
   font-weight: bold;
 }
@@ -82,6 +98,12 @@ h4{
 .error-section{
   text-align: center;
   border: 1px solid red;
+  border-radius: 25px;
+}
+
+#cancel-error {
+  float: right;
+  background-color: red;
 }
 
 input[type] {
@@ -96,6 +118,8 @@ input[type]:focus {
   border-radius: 25px;
 }
 
+
+
 input[type=number] {
   width: 40px;
   -webkit-transition: width .35s ease-in-out;
@@ -108,8 +132,21 @@ input[type=number]:focus {
 }
 
 button {
-  border-radius: 25px;
+  /* border-radius: 25px;
   cursor: pointer;
+  font-size: 18px;
+  color: green */
+  padding: 15px 25px;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #008B8B;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
 }
 
 button:hover,
@@ -119,5 +156,51 @@ button:focus {
     visibility: visible;
 }
 
+.rating-style {
+  float: right;
+}
 
+.delete-button {
+  margin-top: 10px;
+}
 
+@media only screen and (min-width: 600px) {
+  li, .add-form {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .error-section {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  li, .add-form {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .error-section {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  li, .add-form {
+    width: 35%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .error-section {
+    width: 35%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
