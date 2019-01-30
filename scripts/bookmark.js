@@ -94,17 +94,35 @@ const bookmark = (function () {
     });
   }
 
+  // function handleDelete() {
+  //   $('.bookmark-list').on('click', 'button', function (event) {
+  //     const id = getItemIdFromElement(event.currentTarget);
+
+  //     api.deleteBookmark(id)
+  //       .then(() => {
+  //         return api.getBookmark();
+  //       })
+  //       .then((items) => {
+  //         store.emptyArray();
+  //         items.forEach((item) => store.addBookmark(item));
+  //         render();
+  //       })
+  //       .catch(err => {
+
+  //         store.setError(err.message);
+  //         render();
+  //       });
+  //   });
+  // }
+
+
   function handleDelete() {
     $('.bookmark-list').on('click', 'button', function (event) {
       const id = getItemIdFromElement(event.currentTarget);
 
       api.deleteBookmark(id)
-        .then(() => {
-          return api.getBookmark();
-        })
-        .then((items) => {
-          store.emptyArray();
-          items.forEach((item) => store.addBookmark(item));
+        .then((bookmark1) => {
+          store.findAndDelete(id, bookmark1);
           render();
         })
         .catch(err => {
@@ -114,7 +132,6 @@ const bookmark = (function () {
         });
     });
   }
-
   // handle drop down filter
 
   function handleDropDown() {
@@ -170,7 +187,7 @@ const bookmark = (function () {
   function render() {
     let bookmarks2 = [...store.lists];
 
-    if(store.minRating){
+    if (store.minRating) {
       bookmarks2 = bookmarks2.filter(i => i.rating >= store.minRating);
     }
     const bookmarkString = generateBookMarkList(bookmarks2);
