@@ -10,7 +10,7 @@ const bookmark = (function () {
     if (obj.rating)
       return `
     <li class="js-item-elem" data-id="${obj.id}">
-    <label data-id ="${obj.id}">${obj.title}</label>
+    <div aria-label="bookmark-title"data-id ="${obj.id}">${obj.title}</div>
     ${expandedHelper(obj)}
     <div>Rating ${obj.rating}</div>
     <button aria-label="delete" class='delete-button' data-id="${obj.id}">Delete</button>
@@ -19,7 +19,7 @@ const bookmark = (function () {
     else
       return `
       <li class="js-item-elem" data-id="${obj.id}">
-    <label data-id ="${obj.id}">${obj.title}</label>
+    <div aria-label="bookmark-title" data-id ="${obj.id}">${obj.title}</div>
     ${expandedHelper(obj)}<br>
     <button aria-label="delete" class='delete-button' data-id="${obj.id}">Delete</button>
     </li>
@@ -87,7 +87,7 @@ const bookmark = (function () {
   }
   // handles expanding the bookmarks
   function handleExpand() {
-    $('.bookmark-list').on('click', 'label', function (event) {
+    $('.bookmark-list').on('click', 'div', function (event) {
       const id = getItemIdFromElement(event.currentTarget);
 
       store.lists.map(bookmark => {
