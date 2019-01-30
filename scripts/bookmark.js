@@ -29,6 +29,23 @@ const bookmark = (function () {
       .data('id');
   }
 
+  function generateError(message) {
+    return `
+      <section class='error-section'>
+     <button id="cancel-error">X</button>
+      <h4>${message}</h4>
+      </section>
+      `;
+
+  }
+
+  function handleErrorExit(){
+    $('.error-container').on('click','button', function(event){
+      store.error = null;
+      render();
+    });
+  }
+
   function addHelper(obj) {
     if (obj.adding) {
       return `
@@ -104,8 +121,7 @@ const bookmark = (function () {
           render();
         })
         .catch(err => {
-          err.message;
-          store.error = true;
+
           store.setError(err.message);
           render();
         });
@@ -118,7 +134,7 @@ const bookmark = (function () {
       event.preventDefault();
       const newBookmark = $(event.target).serializeJson();
       console.log(newBookmark);
-      
+
       api.createBookmark(newBookmark)
         .then(newBookmark1 => {
           store.addBookmark(newBookmark1);
@@ -126,7 +142,7 @@ const bookmark = (function () {
           render();
         })
         .catch(err => {
-          store.error = true;
+          console.log(err.message);
           store.setError(err.message);
           render();
         });
@@ -158,6 +174,16 @@ const bookmark = (function () {
     const bookmarkString = generateBookMarkList(bookmarks2);
     const form = addHelper(store);
 
+
+    if (store.error) {
+      const errorMessage = generateError(store.error);
+      
+      $('.error-container').html(errorMessage);
+    } else {
+      $('.error-container').empty();
+    }
+
+
     $('.button-section').html(form);
     $('.bookmark-list').html(bookmarkString);
   }
@@ -168,6 +194,7 @@ const bookmark = (function () {
     addButton();
     handleExpand();
     handleDelete();
+    handleErrorExit();
   }
 
 
