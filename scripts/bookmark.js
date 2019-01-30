@@ -39,6 +39,7 @@ const bookmark = (function () {
 
   }
 
+
   function handleErrorExit() {
     $('.error-container').on('click', 'button', function (event) {
       store.error = null;
@@ -128,6 +129,18 @@ const bookmark = (function () {
     });
   }
 
+  // handle drop down filter
+
+  function handleDropDown() {
+    $('.button-section').on('change', '.dropdown-filter', function (event) {
+      const rate = $(':selected').val();
+      console.log(rate);
+      store.minRating = rate;
+      render();
+    });
+  }
+
+
   // handling adding bookmark
   function handleAddBookmark() {
     $('.button-section').on('submit', 'form', function (event) {
@@ -169,11 +182,17 @@ const bookmark = (function () {
   }
 
   function render() {
-    const bookmarks2 = [...store.lists];
+    let bookmarks2 = [...store.lists];
 
+    if(store.minRating){
+      bookmarks2 = bookmarks2.filter(i => i.rating >= store.minRating);
+    }
     const bookmarkString = generateBookMarkList(bookmarks2);
     const form = addHelper(store);
 
+
+
+    
 
     if (store.error) {
       const errorMessage = generateError(store.error);
@@ -195,6 +214,7 @@ const bookmark = (function () {
     handleExpand();
     handleDelete();
     handleErrorExit();
+    handleDropDown();
   }
 
 
