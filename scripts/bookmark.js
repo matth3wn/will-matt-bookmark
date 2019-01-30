@@ -81,7 +81,7 @@ const bookmark = (function () {
   function expandedHelper(bookmark) {
     if (bookmark.expanded) {
       return `<div class="">Descrip ${bookmark.desc}</div>
-      <div class=""><a href="${bookmark.url}">Visit ${bookmark.title}!</a></div> `;
+      <div class=""><a href="${bookmark.url}" target="_blank">Visit ${bookmark.title}!</a></div> `;
     } else
       return '';
   }
