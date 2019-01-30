@@ -8,22 +8,12 @@ const bookmark = (function () {
   // generating html for bookmarks in store
   function generateBookmark(obj) {
 
-    if (store.adding === true) {
-      $('#add-bookmark-form').removeClass('hidden');
-      $('#add-bookmark').addClass('hidden');
-    }
-    if (store.adding === false) {
-      $('#add-bookmark-form').addClass('hidden');
-      $('#add-bookmark').removeClass('hidden');
-      $('#add-bookmark-form').find('input').val('');
-    }
-
     return `
     <li class="js-item-elem" data-id="${obj.id}">
-    <div>${obj.title}</div>
+    <label data-id ="${obj.id}">${obj.title}</label>
     ${expandedHelper(obj)}
     <div>Rating ${obj.rating}</div>
-    <button class='delete-button'>Delete</button>
+    <button class='delete-button' data-id="${obj.id}">Delete</button>
     </li>
     `;
   }
@@ -39,6 +29,44 @@ const bookmark = (function () {
       .data('id');
   }
 
+  function addHelper(obj) {
+    if (obj.adding) {
+      return `
+      <form banner='form' id='add-bookmark-form' class="">
+      <div class="input-section">
+        <h4 class="error-message">You need to fill something from server TEST MEssage</h4>
+        <label for="title">Title</label><br>
+        <input type="text" id="title" placeholder="title" name='title' required><br>
+        <label for="url">URL</label><br>
+        <input type="url" id="url" placeholder="url" name='url' required><br>
+        <label for="description">Description</label><br>
+        <input type="text" id="description" placeholder="description" name='desc' ><br>
+        <label for="rating">Rating</label><br>
+        <input type="number" id="rating" placeholder="1-5" name='rating'  min="1" max="5">
+        <button class="submit-button" type="submit">Submit</button>
+        </div>
+  </form>
+  <select class='dropdown-filter'>
+                <option value="" disabled selected>Select your rating</option>
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+              </select>
+      `;
+    } else {
+      return `<button id="add-bookmark">Add Bookmark</button>
+      <select class='dropdown-filter'>
+                <option value="" disabled selected>Select your rating</option>
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+              </select>`;
+    }
+  }
 
   function expandedHelper(bookmark) {
     if (bookmark.expanded) {
@@ -49,7 +77,7 @@ const bookmark = (function () {
   }
   // handles expanding the bookmarks
   function handleExpand() {
-    $('.bookmark-list').on('click', 'li', function (event) {
+    $('.bookmark-list').on('click', 'label', function (event) {
       // console.log(this);
       const id = getItemIdFromElement(event.currentTarget);
       console.log(id);
@@ -63,10 +91,30 @@ const bookmark = (function () {
     });
   }
 
+  function handleDelete() {
+    $('.bookmark-list').on('click', 'button', function (event) {
+      const id = getItemIdFromElement(event.currentTarget);
+
+      api.deleteBookmark(id)
+        .then(() => {
+          return api.getBookmark();
+        })
+        .then((items) => {
+          store.emptyArray();
+          items.forEach((item) => store.addBookmark(item));
+          render();
+        })
+        .catch(err => {
+          err.message;
+          store.setError(err.message);
+          render();
+        });
+    });
+  }
 
   // handling adding bookmark
   function handleAddBookmark() {
-    $('#add-bookmark-form').submit(function (event) {
+    $('.button-section').on('submit', 'form', function (event) {
       event.preventDefault();
       const newBookmark = $(event.target).serializeJson();
       console.log('handle add bookmark ran..');
@@ -96,7 +144,7 @@ const bookmark = (function () {
 
   //sets store.adding = true
   function addButton() {
-    $('#add-bookmark').on('click', function (event) {
+    $('.button-section').on('click', '#add-bookmark', function (event) {
       console.log('add button ran');
       store.adding = true;
       render();
@@ -107,8 +155,9 @@ const bookmark = (function () {
     const bookmarks2 = [...store.lists];
 
     const bookmarkString = generateBookMarkList(bookmarks2);
+    const form = addHelper(store);
 
-
+    $('.button-section').html(form);
     $('.bookmark-list').html(bookmarkString);
   }
 
@@ -117,6 +166,7 @@ const bookmark = (function () {
     handleAddBookmark();
     addButton();
     handleExpand();
+    handleDelete();
   }
 
 

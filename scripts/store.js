@@ -23,6 +23,10 @@ const store = (function() {
     this.error = error;
   };
 
+  const emptyArray = function(){
+    this.lists = [];
+  };
+
   return {
     lists: [],
     addBookmark,
@@ -34,6 +38,7 @@ const store = (function() {
     findAndUpdate,
     findAndDelete,
     setError,
+    emptyArray
   };
 
 }());
