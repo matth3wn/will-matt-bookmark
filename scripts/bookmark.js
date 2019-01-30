@@ -63,25 +63,11 @@ const bookmark = (function () {
         <button class="submit-button" type="submit">Submit</button>
         </div>
   </form>
-  <select class='dropdown-filter'>
-                <option value="" disabled selected>Select your rating</option>
-                <option value="5">5</option>
-                <option value="4">4</option>
-                <option value="3">3</option>
-                <option value="2">2</option>
-                <option value="1">1</option>
-              </select>
+  
       `;
     } else {
       return `<button id="add-bookmark">Add Bookmark</button>
-      <select class='dropdown-filter'>
-                <option value="" disabled selected>Select your rating</option>
-                <option value="5">5</option>
-                <option value="4">4</option>
-                <option value="3">3</option>
-                <option value="2">2</option>
-                <option value="1">1</option>
-              </select>`;
+      `;
     }
   }
 
@@ -132,7 +118,7 @@ const bookmark = (function () {
   // handle drop down filter
 
   function handleDropDown() {
-    $('.button-section').on('change', '.dropdown-filter', function (event) {
+    $('.dropdown-filter').on('change', function (event) {
       const rate = $(':selected').val();
       console.log(rate);
       store.minRating = rate;
@@ -189,10 +175,6 @@ const bookmark = (function () {
     }
     const bookmarkString = generateBookMarkList(bookmarks2);
     const form = addHelper(store);
-
-
-
-    
 
     if (store.error) {
       const errorMessage = generateError(store.error);
