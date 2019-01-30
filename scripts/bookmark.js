@@ -191,21 +191,6 @@ const bookmark = (function () {
     $('.bookmark-list').html(bookmarkString);
   }
 
-  // testing adding star unicode
-  function generateStars(stars){
-    switch(stars){
-    case 1: 
-      return '<span>★</span> &nbsp;&nbsp;<span>☆</span>&nbsp;&nbsp;<span>☆</span>&nbsp;&nbsp;<span>☆</span>&nbsp;&nbsp;<span>☆</span>';
-    case 2: 
-      return '<span>★</span> &nbsp;&nbsp;<span>★</span>&nbsp;&nbsp;<span>☆</span>&nbsp;&nbsp;<span>☆</span>&nbsp;&nbsp;<span>☆</span>';
-    case 3: 
-      return '<span>★</span> &nbsp;&nbsp;<span>★</span>&nbsp;&nbsp;<span>★</span>&nbsp;&nbsp;<span>☆</span>&nbsp;&nbsp;<span>☆</span>';
-    case 4: 
-      return '<span>★</span> &nbsp;&nbsp;<span>★</span>&nbsp;&nbsp;<span>★</span>&nbsp;&nbsp;<span>★</span>&nbsp;&nbsp;<span>☆</span>';
-    case 5: 
-      return '<span>★</span> &nbsp;&nbsp;<span>★</span>&nbsp;&nbsp;<span>★</span>&nbsp;&nbsp;<span>★</span>&nbsp;&nbsp;<span>★</span>'
-    }
-  }
 
   function eventListener() {
     handleAddBookmark();
