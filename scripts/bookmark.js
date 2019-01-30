@@ -10,7 +10,7 @@ const bookmark = (function () {
     if (obj.rating)
       return `
     <li class="js-item-elem" data-id="${obj.id}">
-    <div aria-label="bookmark-title"data-id ="${obj.id}">${obj.title}</div>
+    <div aria-label="bookmark-title"data-id ="${obj.id}" class='bookmark-title'>${obj.title}</div>
     ${expandedHelper(obj)}
     <div>Rating ${obj.rating}</div>
     <button aria-label="delete" class='delete-button' data-id="${obj.id}">Delete</button>
@@ -19,7 +19,7 @@ const bookmark = (function () {
     else
       return `
       <li class="js-item-elem" data-id="${obj.id}">
-    <div aria-label="bookmark-title" data-id ="${obj.id}">${obj.title}</div>
+    <div aria-label="bookmark-title" data-id ="${obj.id}" class='bookmark-title'>${obj.title}</div>
     ${expandedHelper(obj)}<br>
     <button aria-label="delete" class='delete-button' data-id="${obj.id}">Delete</button>
     </li>
@@ -66,7 +66,7 @@ const bookmark = (function () {
         <label for="description">Description</label><br>
         <input type="text" id="description" placeholder="  description" name='desc' ><br>
         <label for="rating">Rating</label><br>
-        <input type="number" id="rating" placeholder=" 1-5" name='rating'  min="1" max="5" >
+        <input type="number" id="rating" placeholder=" 1-5" name='rating'  min="1" max="5" ><br>
         <button class="submit-button" type="submit">Submit</button>
         </div>
   </form>
@@ -80,7 +80,7 @@ const bookmark = (function () {
 
   function expandedHelper(bookmark) {
     if (bookmark.expanded) {
-      return `<div class="">Descrip ${bookmark.desc}</div>
+      return `<div class="">${bookmark.desc}</div>
       <div class=""><a href="${bookmark.url}" target="_blank">Visit ${bookmark.title}!</a></div> `;
     } else
       return '';

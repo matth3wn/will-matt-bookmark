@@ -11,7 +11,7 @@ const store = (function () {
     return this.lists.find(item => item.id === id);
   };
 
-  const findAndUpdate = function (id, newData) {
+  const findAndUpdate = function (id, newData) { // didn't use but can be used to edit
     const item = this.findById(id);
     Object.assign(item, newData);
   };
@@ -31,7 +31,6 @@ const store = (function () {
     lists: [],
     addBookmark,
     adding: null,
-    expanded: null,
     error: null,
     minRating: null,
     editing: null,

@@ -34,6 +34,7 @@ const api = (function () {
     });
   };
 
+  // Use for edit feature in extension 
   const updateBookmark = function (id, updateData) {
     const newData = JSON.stringify(updateData);
     return listApiFetch(BASE_URL + '/bookmarks/' + id, {

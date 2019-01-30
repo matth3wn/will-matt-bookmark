@@ -2,8 +2,11 @@
   box-sizing: border-box;
 }
 
+
 body {
   font-family: 'Roboto', sans-serif;
+
+  background: linear-gradient(#019875, #9a12b3) no-repeat fixed; 
 }
 
 ul {
@@ -19,7 +22,9 @@ h1 {
 
 .add-form {
   text-align: center;
-  width: 100%;
+  background-color: antiquewhite;
+  padding-bottom: 10px;
+  
 }
 
 
@@ -28,30 +33,20 @@ li {
   text-align: center;
   padding: 10px;
   width: 100%;
+  background-color: antiquewhite;
+  margin-bottom: 10px;
 }
 
 .hidden {
   display: none;
 }
 
-/* .dropdown {
-  position: relative;
-  display: inline-block;
+
+
+.dropdown-filter{
+  border-radius: 25px;
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 12px 16px;
-  z-index: 1;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-} */
 
 #add-bookmark {
   margin-bottom: 5px;
@@ -63,11 +58,31 @@ li {
   padding-bottom: 20px;
 }
 
+.input-section > * {
+  margin: 3px 0;
+}
+
 input {
  border-style: solid;
  border-width: 1px;
 }
 
+.bookmark-title{
+  font-weight: bold;
+  cursor: pointer;
+}
+label{
+  font-weight: bold;
+}
+
+h4{
+  color: red;
+}
+
+.error-section{
+  text-align: center;
+  border: 1px solid red;
+}
 
 input[type] {
   width: 100px;
@@ -82,7 +97,7 @@ input[type]:focus {
 }
 
 input[type=number] {
-  width: 35px;
+  width: 40px;
   -webkit-transition: width .35s ease-in-out;
   transition: width .35s ease-in-out;
 }
@@ -94,4 +109,15 @@ input[type=number]:focus {
 
 button {
   border-radius: 25px;
+  cursor: pointer;
 }
+
+button:hover,
+button:focus {
+    background: #4b77be;
+    box-shadow: 1px 3px #888888;
+    visibility: visible;
+}
+
+
+
