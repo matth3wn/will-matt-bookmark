@@ -39,8 +39,8 @@ const bookmark = (function () {
 
   }
 
-  function handleErrorExit(){
-    $('.error-container').on('click','button', function(event){
+  function handleErrorExit() {
+    $('.error-container').on('click', 'button', function (event) {
       store.error = null;
       render();
     });
@@ -177,7 +177,7 @@ const bookmark = (function () {
 
     if (store.error) {
       const errorMessage = generateError(store.error);
-      
+
       $('.error-container').html(errorMessage);
     } else {
       $('.error-container').empty();

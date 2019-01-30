@@ -1,29 +1,29 @@
 'use strict';
 
 
-const store = (function() {
+const store = (function () {
 
-  const addBookmark = function(item) {
+  const addBookmark = function (item) {
     this.lists.push(item);
   };
 
-  const findById = function(id) {
+  const findById = function (id) {
     return this.lists.find(item => item.id === id);
   };
 
-  const findAndUpdate = function(id, newData) {
+  const findAndUpdate = function (id, newData) {
     const item = this.findById(id);
     Object.assign(item, newData);
   };
 
-  const findAndDelete = function(id) {
+  const findAndDelete = function (id) {
     this.lists = this.lists.filter(item => item.id !== id);
   };
-  const setError = function(error) {
+  const setError = function (error) {
     this.error = error;
   };
 
-  const emptyArray = function(){
+  const emptyArray = function () {
     this.lists = [];
   };
 
@@ -34,7 +34,7 @@ const store = (function() {
     expanded: null,
     error: null,
     minRating: null,
-    findById, 
+    findById,
     findAndUpdate,
     findAndDelete,
     setError,

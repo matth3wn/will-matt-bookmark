@@ -1,7 +1,7 @@
 'use strict';
 /* global  store, api,$,bookmark */
 
-$(document).ready(function() {
+$(document).ready(function () {
   bookmark.eventListener();
 
   api.getBookmark()
