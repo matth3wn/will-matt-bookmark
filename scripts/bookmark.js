@@ -13,7 +13,7 @@ const bookmark = (function () {
     <label data-id ="${obj.id}">${obj.title}</label>
     ${expandedHelper(obj)}
     <div>Rating ${obj.rating}</div>
-    <button class='delete-button' data-id="${obj.id}">Delete</button>
+    <button aria-label="delete" class='delete-button' data-id="${obj.id}">Delete</button>
     </li>
     `;
     else
@@ -21,7 +21,7 @@ const bookmark = (function () {
       <li class="js-item-elem" data-id="${obj.id}">
     <label data-id ="${obj.id}">${obj.title}</label>
     ${expandedHelper(obj)}<br>
-    <button class='delete-button' data-id="${obj.id}">Delete</button>
+    <button aria-label="delete" class='delete-button' data-id="${obj.id}">Delete</button>
     </li>
       `;
   }
@@ -39,7 +39,7 @@ const bookmark = (function () {
   function generateError(message) {
     return `
       <section class='error-section'>
-     <button id="cancel-error">X</button>
+     <button aria-label="close" id="cancel-error">X</button>
       <h4>${message}</h4>
       </section>
       `;
@@ -58,7 +58,7 @@ const bookmark = (function () {
     if (obj.adding) {
       return `
       <form banner='form' id='add-bookmark-form' class="">
-      <div class="input-section">
+      <div class="input-section" aria-label="create-bookmark">
         <label for="title">Title</label><br>
         <input type="text" id="title" placeholder="title" name='title' ><br>
         <label for="url">URL</label><br>
