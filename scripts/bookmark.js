@@ -24,7 +24,6 @@ const bookmark = (function () {
   }
 
   function getItemIdFromElement(item) {
-    console.log(item);
     return $(item)
       .data('id');
   }
@@ -81,9 +80,7 @@ const bookmark = (function () {
   // handles expanding the bookmarks
   function handleExpand() {
     $('.bookmark-list').on('click', 'label', function (event) {
-      // console.log(this);
       const id = getItemIdFromElement(event.currentTarget);
-      console.log(id);
 
       store.lists.map(bookmark => {
         if (bookmark.id === id) {
@@ -93,28 +90,6 @@ const bookmark = (function () {
       });
     });
   }
-
-  // function handleDelete() {
-  //   $('.bookmark-list').on('click', 'button', function (event) {
-  //     const id = getItemIdFromElement(event.currentTarget);
-
-  //     api.deleteBookmark(id)
-  //       .then(() => {
-  //         return api.getBookmark();
-  //       })
-  //       .then((items) => {
-  //         store.emptyArray();
-  //         items.forEach((item) => store.addBookmark(item));
-  //         render();
-  //       })
-  //       .catch(err => {
-
-  //         store.setError(err.message);
-  //         render();
-  //       });
-  //   });
-  // }
-
 
   function handleDelete() {
     $('.bookmark-list').on('click', 'button', function (event) {
@@ -137,7 +112,6 @@ const bookmark = (function () {
   function handleDropDown() {
     $('.dropdown-filter').on('change', function (event) {
       const rate = $(':selected').val();
-      console.log(rate);
       store.minRating = rate;
       render();
     });
@@ -149,7 +123,6 @@ const bookmark = (function () {
     $('.button-section').on('submit', 'form', function (event) {
       event.preventDefault();
       const newBookmark = $(event.target).serializeJson();
-      console.log(newBookmark);
 
       api.createBookmark(newBookmark)
         .then(newBookmark1 => {
@@ -158,7 +131,6 @@ const bookmark = (function () {
           render();
         })
         .catch(err => {
-          console.log(err.message);
           store.setError(err.message);
           render();
         });
@@ -178,7 +150,6 @@ const bookmark = (function () {
   //sets store.adding = true
   function addButton() {
     $('.button-section').on('click', '#add-bookmark', function (event) {
-      console.log('add button ran');
       store.adding = true;
       render();
     });

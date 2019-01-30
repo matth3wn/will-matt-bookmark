@@ -34,6 +34,7 @@ const store = (function () {
     expanded: null,
     error: null,
     minRating: null,
+    editing: null,
     findById,
     findAndUpdate,
     findAndDelete,
