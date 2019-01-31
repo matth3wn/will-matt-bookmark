@@ -90,8 +90,14 @@ li > * {
 input {
  border-style: solid;
  border-width: 2px;
- padding-left: 10px;
+ padding: 10px;
+ font-size: 16px;
  width: 100%;
+}
+
+#rating {
+  font-size: 14px;
+  padding: 5px;
 }
 
 .bookmark-title{
@@ -100,7 +106,7 @@ input {
   margin-bottom: 10px;
 }
 
-label{
+label {
   font-weight: bold;
 }
 

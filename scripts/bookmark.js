@@ -7,7 +7,6 @@ const bookmark = (function () {
 
   // generating html for bookmarks in store
   function generateBookmark(obj) {
-    console.log(obj);
     if (obj.rating)
       return `
     <li class="js-item-elem" data-id="${obj.id}">
@@ -41,7 +40,7 @@ const bookmark = (function () {
     return `
       <section class='error-section'>
      <button aria-label="close" id="cancel-error">X</button>
-      <p class='error-message-p'>${message}</p>
+      <h4>${message}</h4>
       </section>
       `;
 
@@ -71,7 +70,6 @@ const bookmark = (function () {
         <button class="submit-button" type="submit">Submit</button>
         </div>
   </form>
-  
       `;
     } else {
       return `<button id="add-bookmark">Add Bookmark</button>
@@ -79,6 +77,7 @@ const bookmark = (function () {
     }
   }
 
+  
   function expandedHelper(bookmark) {
     if (bookmark.expanded) {
       return `<div class="">${bookmark.desc}</div>
@@ -88,12 +87,21 @@ const bookmark = (function () {
   }
 
   function starMaker(obj) {
-    let star = '';
-    for(let i = 0; i < obj.rating; i++){
-      star+='★';
+    switch (obj.rating) {
+    case 1:
+      return '<span class=star>★</span> ';
+    case 2:
+      return '<span class=star>★★</span> ';
+    case 3:
+      return '<span class=star>★★★</span> ';
+    case 4:
+      return '<span class=star>★★★★</span> ';
+    default:
+      return '<span class=star>★★★★★</span> ';
+
     }
-    return `<span class=star>${star}</span>`;
   }
+
   // handles expanding the bookmarks
   function handleExpand() {
     $('.bookmark-list').on('click', 'div', function (event) {
@@ -107,6 +115,26 @@ const bookmark = (function () {
       });
     });
   }
+
+  // handle editing rating testing
+  function handleEditRating() {
+    $('.bookmark-list').on('click', '.star', function (event) {
+      const id = getItemIdFromElement(event.currentTarget);
+      const newData = $(event.currentTarget).find('.star').val();
+
+      api.findAndUpdate(id, newData)
+        .then((bookmark1) => {
+          store.findAndUpdate(id, bookmark1);
+          render();
+        })
+        .catch(err => {
+
+          store.setError(err.message);
+          render();
+        });
+    });
+  }
+
 
   function handleDelete() {
     $('.bookmark-list').on('click', 'button', function (event) {
@@ -124,6 +152,8 @@ const bookmark = (function () {
         });
     });
   }
+
+
   // handle drop down filter
 
   function handleDropDown() {
@@ -140,7 +170,6 @@ const bookmark = (function () {
     $('.button-section').on('submit', 'form', function (event) {
       event.preventDefault();
       const newBookmark = $(event.target).serializeJson();
-      console.log(newBookmark);
 
       api.createBookmark(newBookmark)
         .then(newBookmark1 => {
@@ -208,6 +237,7 @@ const bookmark = (function () {
     handleDelete();
     handleErrorExit();
     handleDropDown();
+    handleEditRating(); // handle edit test
   }
 
 
