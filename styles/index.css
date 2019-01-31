@@ -19,7 +19,7 @@ h1 {
   margin-top: 50px;
   margin-bottom: 5px;
   font-size: 42px;
-  text-shadow: 2px 2px #008B8B;
+  text-shadow: 2px 2px #006161;
 }
 
 
@@ -27,7 +27,7 @@ h1 {
   text-align: center;
   background-color: antiquewhite;
   padding-bottom: 10px;
-  box-shadow: 5px 10px #008B8B;
+  box-shadow: 5px 10px #006161;
   border-radius: 25px;
 }
 
@@ -40,7 +40,7 @@ li {
   width: 100%;
   background-color: antiquewhite;
   margin-bottom: 10px;
-  box-shadow: 5px 10px #008B8B;
+  box-shadow: 5px 10px #006161;
 }
 
 li:first-child {
@@ -62,12 +62,13 @@ li > * {
 
 .submit-button {
   margin-top: 5px;
+  background-color: #006161;
 }
 
 .dropdown-filter{
   border-radius: 25px;
   margin-top: 10px;
-  box-shadow: 2px 2px #008B8B
+  box-shadow: 2px 2px #006161
 }
 
 
@@ -103,21 +104,22 @@ label{
   font-weight: bold;
 }
 
-h4{
-  color: red;
+.error-message-p{
+  font-weight: bolder;
+  color: #9E0000;
 }
 
 .error-section{
   text-align: center;
-  border: 1px solid red;
+  border: 1px solid #9E0000;
   border-radius: 25px;
-  box-shadow: 2px 2px red;
+  box-shadow: 2px 2px #9E0000;
   padding: 5px;
 }
 
 #cancel-error {
   float: right;
-  background-color: red;
+  background-color: #9E0000;
 }
 
 input[type] {
@@ -153,7 +155,7 @@ button {
   cursor: pointer;
   outline: none;
   color: #fff;
-  background-color: #008B8B;
+  background-color: #006161;
   border: none;
   border-radius: 15px;
   box-shadow: 0 9px #999;

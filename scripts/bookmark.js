@@ -41,7 +41,7 @@ const bookmark = (function () {
     return `
       <section class='error-section'>
      <button aria-label="close" id="cancel-error">X</button>
-      <h4>${message}</h4>
+      <p class='error-message-p'>${message}</p>
       </section>
       `;
 
