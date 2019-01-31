@@ -88,19 +88,11 @@ const bookmark = (function () {
   }
 
   function starMaker(obj) {
-    switch (obj.rating) {
-    case 1:
-      return '<span class=star>★</span> ';
-    case 2:
-      return '<span class=star>★★</span> ';
-    case 3:
-      return '<span class=star>★★★</span> ';
-    case 4:
-      return '<span class=star>★★★★</span> ';
-    default:
-      return '<span class=star>★★★★★</span> ';
-
+    let star = '';
+    for(let i = 0; i < obj.rating; i++){
+      star+='★';
     }
+    return `<span class=star>${star}</span>`;
   }
   // handles expanding the bookmarks
   function handleExpand() {
