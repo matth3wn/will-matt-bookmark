@@ -28,7 +28,9 @@ h1 {
   background-color: antiquewhite;
   padding-bottom: 10px;
   box-shadow: 5px 10px #008B8B;
+  border-radius: 25px;
 }
+
 
 
 li {
@@ -39,6 +41,14 @@ li {
   background-color: antiquewhite;
   margin-bottom: 10px;
   box-shadow: 5px 10px #008B8B;
+}
+
+li:first-child {
+  border-radius: 25px 25px 0 0;
+}
+
+li:last-child {
+  border-radius: 0 0 25px 25px;
 }
 
 li > * {
@@ -132,10 +142,6 @@ input[type=number]:focus {
 }
 
 button {
-  /* border-radius: 25px;
-  cursor: pointer;
-  font-size: 18px;
-  color: green */
   padding: 15px 25px;
   font-size: 14px;
   text-align: center;
