@@ -7,12 +7,13 @@ const bookmark = (function () {
 
   // generating html for bookmarks in store
   function generateBookmark(obj) {
+    console.log(obj);
     if (obj.rating)
       return `
     <li class="js-item-elem" data-id="${obj.id}">
     <div aria-label="bookmark-title"data-id ="${obj.id}" class='bookmark-title'>${obj.title}</div>
     ${expandedHelper(obj)}
-    <div class='rating-style'>Rating ${obj.rating}</div>
+    <div class='star-row'>${starMaker(obj)}</div>
     <button aria-label="delete" class='delete-button' data-id="${obj.id}">Delete</button>
     </li>
     `;
@@ -59,13 +60,13 @@ const bookmark = (function () {
       return `
       <form banner='form' id='add-bookmark-form' class="">
       <div class="input-section" aria-label="create-bookmark">
-        <label for="title">Add your bookmark</label><br>
-        <input type="text" id="title" placeholder="  title" name='title'><br>
-        <label for="url" class='hidden'>label</label>
+        <label for="title">Title</label><br>
+        <input type="text" id="title" placeholder="  title" name='title' ><br>
+        <label for="url">URL</label><br>
         <input type="url" id="url" placeholder="  url" name='url' ><br>
-        <label for="description" class='hidden'>description</label>
+        <label for="description">Description</label><br>
         <input type="text" id="description" placeholder="  description" name='desc' ><br>
-        <label for="rating" class='hidden'>rating</label>
+        <label for="rating">Rating</label><br>
         <input type="number" id="rating" placeholder=" 1-5" name='rating'  min="1" max="5" ><br>
         <button class="submit-button" type="submit">Submit</button>
         </div>
@@ -84,6 +85,22 @@ const bookmark = (function () {
       <div class=""><a href="${bookmark.url}" target="_blank">Visit ${bookmark.title}!</a></div> `;
     } else
       return '';
+  }
+
+  function starMaker(obj) {
+    switch (obj.rating) {
+    case 1:
+      return '<span class=star>★</span> ';
+    case 2:
+      return '<span class=star>★★</span> ';
+    case 3:
+      return '<span class=star>★★★</span> ';
+    case 4:
+      return '<span class=star>★★★★</span> ';
+    default:
+      return '<span class=star>★★★★★</span> ';
+
+    }
   }
   // handles expanding the bookmarks
   function handleExpand() {
