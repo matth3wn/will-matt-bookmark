@@ -67,6 +67,7 @@ li > * {
 .dropdown-filter{
   border-radius: 25px;
   margin-top: 10px;
+  box-shadow: 2px 2px #008B8B
 }
 
 
